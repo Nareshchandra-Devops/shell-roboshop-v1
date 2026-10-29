@@ -3,7 +3,7 @@
 user_id=$(id -u)
 logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
-r="\e[31m"
+R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
@@ -15,7 +15,7 @@ fi
 
 mkdir -p $logs_folder
 
-echo "Script started excution at $(date +"%F %T")" &>> $logs_file"
+echo "Script started execution at $(date +"%F %T")" &>> $logs_file
 
 validate(){
     if [ $1 -ne 0 ]; then
@@ -33,6 +33,6 @@ validate $? "Adding mongo repo"
 dnf install mongodb-org -y &>> $logs_file
 validate $? "Install MongDB"
 
-systemctl enable mongodb &>> $logs_file
-systemctl start mongodb &>> $logs_file
+systemctl enable mongod &>> $logs_file
+systemctl start mongod &>> $logs_file
 validate $? "Enable and start MongoDB"
