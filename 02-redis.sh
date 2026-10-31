@@ -2,21 +2,21 @@
 
 user_id=$(id -u)
 logs_folder="/var/log/roboshop"
-logs_file="${logs-folder}/${0}.log"
+logs_file="${logs_folder}/${0}.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-if [ $user_id -ne 0 ];then 
+if [ $user_id -ne 0 ]; then
     echo "Please run this script with sudo access.."
     exit 1
 fi
 
 mkdir -p $logs_folder
 
-timestamo(){
-    date "+%F %T"
+timestamp(){
+    date "+%F %T" 
 }
 
 validate(){
@@ -30,10 +30,10 @@ validate(){
 
 echo "$(timestamp) [INFO] ==== Script started Execution =====" | tee -a $logs_file
 
-dnf moduke disable redis -y &>> $logs_file
+dnf module disable redis -y &>> $logs_file
 dnf module enable redis:7 -y &>> $logs_file
 dnf install redis -y &>> $logs_file
-validate $? "Installing redis"
+validate $? "Installing Redis"
 
 sed -i -e 's/^bind 127.0.0.1/bind 0.0.0.0/' -e 's/^protected-mode yes/protected-mode no/' /etc/redis/redis.conf
 validate $? "Allowing remote connections to Redis"
