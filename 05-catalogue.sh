@@ -37,7 +37,7 @@ dnf module enable nodejs:24 -y &>> $logs_file
 dnf install nodejs -y &>> $logs_file
 validate $? "Installing nodejs 24"
 
-id roboshop &>> $logs_file
+id naresh &>> $logs_file
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "naresh system user" naresh &>> $logs_file
     validate $? "Creating system user"
