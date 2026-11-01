@@ -3,7 +3,7 @@ Description=User Service
 After=network-online.target
 
 [Service]
-User=naresh
+User=roboshop
 Environment=REDIS_URL="redis://redis.balasani.online:6379"
 Environment=MONGO_URL="mongodb://mongodb.balasani.online:27017/users"
 ExecStart=/bin/node /app/server.js
