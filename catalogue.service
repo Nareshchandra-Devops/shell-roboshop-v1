@@ -3,7 +3,7 @@ Description=Catalogue Service
 After=network-online.target
 
 [Service]
-User=naresh
+User=roboshop
 Environment=MONGO_URL="mongodb://mongodb.balasani.online:27017/catalogue"
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=catalogue
